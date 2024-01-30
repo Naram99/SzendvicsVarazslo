@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="step.cls.js"></script>
+        <script src="wizard.cls.js"></script>
+        <title>SzendvicsVarázsló</title>
+    </head>
+    <body>
+        <header class="main-header">
+            <div class="nav-wrap">
+                <div class="brand-ct">
+                    <h2>SzendóMágus</h2>
+                </div>
+                <div class="nav-ct">
+                    <nav>
+                        <ul>
+                            <li>
+                                <button class="nav-btn" id="home-btn">
+                                    Főoldal
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    class="nav-btn order-btn"
+                                    id="order-btn">
+                                    Rendelés
+                                </button>
+                            </li>
+                            <li>
+                                <button class="nav-btn" id="login-btn">
+                                    Bejelentkezés
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="main-wrap">
+                <button class="main-btn order-btn">Rendelés</button>
+                <div class="order-window">
+                    <div class="window-header">
+                        <button id="close-btn" class="window-btn">
+                            Kilépés
+                        </button>
+                    </div>
+                    <div class="window-main" id="window-main"></div>
+                    <div class="moves-ct window-footer">
+                        <button id="prev-btn" class="window-btn">Vissza</button>
+                        <button id="next-btn" class="window-btn">Tovább</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer></footer>
+        <script src="script.js"></script>
+    </body>
+</html>

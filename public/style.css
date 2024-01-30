@@ -1,0 +1,124 @@
+/* CSS reset */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --header-bg: #006400;
+    --header-color: #fff;
+    --hover-color: #bdbd00;
+    --btn-border: #f00;
+}
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 70px;
+    background-color: var(--header-bg);
+    color: var(--header-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.nav-wrap,
+.main-wrap {
+    width: 1200px;
+    margin: auto;
+}
+
+.nav-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-header ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.main-header ul li button {
+    font-size: 1.2rem;
+    color: var(--header-color);
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    color: var(--hover-color);
+}
+.main-wrap {
+    position: relative;
+    margin-top: 70px;
+    display: grid;
+    place-content: center;
+}
+
+.main-btn {
+    padding: 1rem;
+    margin: 1rem;
+    background-color: var(--hover-color);
+    color: var(--header-bg);
+    font-size: 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.main-btn:hover {
+    background-color: var(--header-bg);
+    color: var(--hover-color);
+}
+
+.order-window {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - (70px * 2));
+    padding: 15px;
+    border-radius: 10px;
+    background-color: var(--header-color);
+    box-shadow: 0px 0px 15px var(--header-bg);
+}
+
+.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.window-btn {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 2px solid var(--btn-border);
+    background-color: var(--header-color);
+    color: var(--btn-border);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.window-btn:hover {
+    background-color: var(--btn-border);
+    color: var(--header-color);
+}
+
+.moves-ct {
+    display: flex;
+    justify-content: space-between;
+}

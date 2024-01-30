@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Kenyer",
+        "data": "kenyer.json",
+        "multiselect": false,
+        "text": "Válaszd ki a szendvics alapjául szolgáló kenyeret!"
+    },
+    {
+        "name": "Szosz",
+        "data": "szosz.json",
+        "multiselect": true,
+        "text": "Válaszd ki milyen szósz(oka)t szeretnél a szendvicsbe!"
+    },
+    {
+        "name": "Feltet",
+        "data": "feltet.json",
+        "multiselect": true,
+        "text": "Válaszd ki a feltéteket!"
+    }
+]
