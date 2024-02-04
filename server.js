@@ -15,21 +15,6 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "public")));
 
-function auth(req, res, next) {
-    const token = req.cookies.auth_token;
-
-    if (!token)
-        return res.status(200).sendFile(__dirname + "/public/login.html");
-
-    jwt.verify(token, process.env.SECRET_KEY, (err, decodedToken) => {
-        if (err)
-            return res.status(200).sendFile(__dirname + "/public/login.html");
-
-        res.response = { success: true };
-        next();
-    });
-}
-
 app.get("/lepesek", (req, res) => {
     fs.readFile(path.join(__dirname, "steps.json"), (err, fileContent) => {
         let steps = JSON.parse(fileContent);
@@ -44,6 +29,47 @@ app.get("/elemek/:file", (req, res) => {
     });
 });
 
-app.post("/szendvics", auth, (req, res) => {});
+app.post("/szendvics", (req, res) => {
+    fs.readFile(path.join(__dirname, "rendelesek.json"), (err, fileContent) => {
+        const rendelesek = JSON.parse(fileContent);
+        const rendeles = Object.assign(req.body);
+
+        if (rendeles.id == 0)
+            rendeles.id = rendelesek[rendelesek.length - 1].id + 1;
+
+        rendelesek.push(rendeles);
+        fs.writeFile(
+            path.join(__dirname, "rendelesek.json"),
+            JSON.stringify(rendelesek, null, "\t"),
+            (err) => {
+                res.json({ saved: "ok" });
+            }
+        );
+    });
+});
+
+app.post("/login", (req, res) => {
+    fs.readFile(path.join(__dirname, "users.json"), (err, fileContent) => {
+        const users = JSON.parse(fileContent);
+        users.forEach((user) => {
+            if (user.name == req.body.userName) {
+                bcrypt.compare(
+                    req.body.password,
+                    user.password,
+                    (err, result) => {
+                        if (result) {
+                            fs.readFile(
+                                path.join(__dirname, "public", "admin.html"),
+                                (err, fileContent) => {
+                                    res.status(200).end(fileContent);
+                                }
+                            );
+                        }
+                    }
+                );
+            }
+        });
+    });
+});
 
 app.listen(process.env.PORT);

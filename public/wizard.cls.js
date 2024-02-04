@@ -8,7 +8,7 @@ class Wizard {
         <div class="preview-pics"></div>
         `;
 
-    constructor(renderTo, nextBtn, prevBtn) {
+    constructor(renderTo, nextBtn, prevBtn, sandwichName = "", id = 0) {
         console.log("Wizard");
 
         this.content = document.querySelector(renderTo);
@@ -24,8 +24,13 @@ class Wizard {
         this.content.insertAdjacentElement("afterend", this.preview);
         this.content.insertAdjacentElement("afterend", this.list);
 
+        this.nextBtn = document.querySelector(nextBtn);
+        this.prevBtn = document.querySelector(prevBtn);
+
         this.sandwich = {
             price: 0,
+            name: sandwichName,
+            id: id,
         };
 
         fetch("/lepesek")
@@ -37,11 +42,19 @@ class Wizard {
 
         this.step = -1;
 
-        document.querySelector(nextBtn).addEventListener("click", () => {
+        this.nextBtn.addEventListener("click", () => {
+            if (
+                document.querySelector("#order-name") &&
+                this.sandwich.name == ""
+            ) {
+                this.sandwich.name = document
+                    .querySelector("#order-name")
+                    .value.trim();
+            }
             this.next();
         });
 
-        document.querySelector(prevBtn).addEventListener("click", () => {
+        this.prevBtn.addEventListener("click", () => {
             this.previous();
         });
     }
@@ -49,7 +62,8 @@ class Wizard {
     next() {
         let valid = this.validate();
         if (valid) {
-            if (this.step > -1) this.sandwichUpdate(".activated");
+            if (this.step > -1 && this.steps[this.step])
+                this.sandwichUpdate(".activated", this.items);
 
             this.step++;
             if (this.steps[this.step]) {
@@ -71,22 +85,108 @@ class Wizard {
             } else if (this.step == this.steps.length) {
                 this.content.innerHTML = `
                     <div class="window-text">Kérlek add meg a neved a rendelés véglegesítéséhez!</div>
-                    <input type="text" id="order-name" />
+                    <input type="text" id="order-name" value="${this.sandwich.name}"/>
                 `;
                 this.list.innerHTML = "";
+            } else if (this.step == this.steps.length + 1) {
+                this.content.innerHTML = `<div class="window-text">Kedves ${this.sandwich.name}, az összeállított szendvicsed így néz ki: </div>`;
+                this.list.innerHTML = ``;
+
+                for (let lepes of this.steps) {
+                    let prevTxt = document.createElement("div");
+                    prevTxt.classList.add("window-text");
+                    prevTxt.innerHTML = "";
+                    for (let item of this.sandwich[lepes.name]) {
+                        if (item == "Nem kérek") continue;
+                        prevTxt.innerHTML += item + " ";
+                    }
+                    this.content.appendChild(prevTxt);
+                }
+
+                this.kenyerTop = document.createElement("img");
+                this.kenyerTop.classList.add("preview-img");
+
+                let source = this.sandwich.KenyerPic[0]
+                    .split("undefined")
+                    .pop()
+                    .split(".");
+                console.log(source);
+
+                this.kenyerTop.src = `./pics/${source[0]}Top.png`;
+                this.previewPic.appendChild(this.kenyerTop);
+            } else if (this.step == this.steps.length + 2) {
+                this.content.innerHTML = "Köszönjük a rendelést!";
+                console.log(this.sandwich);
+                fetch("/szendvics", {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json",
+                    },
+                    body: JSON.stringify(this.sandwich),
+                });
             } else {
-                this.content.innerHTML = ``;
+                location.reload();
             }
         }
     }
 
     previous() {
         this.step--;
-        this.step--;
-        this.next();
+        if (this.steps[this.step]) {
+            fetch(`/elemek/${this.steps[this.step].data}`)
+                .then((res) => res.json())
+                .then((elemek) => {
+                    this.items = elemek;
+                    this.render(
+                        this.items,
+                        this.steps[this.step].multiselect,
+                        this.steps[this.step].optional
+                    );
+                });
+
+            this.content.innerHTML = `
+                <div class="window-text">${this.steps[this.step].text}</div>`;
+        } else if (this.step == this.steps.length) {
+            this.content.innerHTML = `
+                <div class="window-text">Kérlek add meg a neved a rendelés véglegesítéséhez!</div>
+                <input type="text" id="order-name" value="${this.sandwich.name}"/>
+            `;
+            this.list.innerHTML = "";
+        } else if (this.step == this.steps.length + 1) {
+            this.content.innerHTML = `<div class="window-text">Kedves ${this.sandwich.name}, az összeállított szendvicsed így néz ki: </div>`;
+            this.list.innerHTML = ``;
+
+            for (let lepes of this.steps) {
+                let prevTxt = document.createElement("div");
+                prevTxt.classList.add("window-text");
+                prevTxt.innerHTML = "";
+                for (let item of this.sandwich[lepes.name]) {
+                    if (item == "Nem kérek") continue;
+                    prevTxt.innerHTML += item + " ";
+                }
+                this.content.appendChild(prevTxt);
+            }
+
+            this.kenyerTop = document.createElement("img");
+            this.kenyerTop.classList.add("preview-img");
+
+            let source = this.sandwich.KenyerPic[0]
+                .split("undefined")
+                .pop()
+                .split(".");
+            console.log(source);
+
+            this.kenyerTop.src = `./pics/${source[0]}Top.png`;
+            this.previewPic.appendChild(this.kenyerTop);
+        }
     }
 
     validate() {
+        if (this.step > -1 && this.steps[this.step]) {
+            let validator = document.querySelector(".activated");
+            if (validator) return true;
+            return false;
+        }
         return true;
     }
 
@@ -165,16 +265,16 @@ class Wizard {
     /**
      *
      * @param {String} selector
+     * @param {Array} elemek
      */
-    sandwichUpdate(selector) {
+    sandwichUpdate(selector, elemek) {
         this.updates = document.querySelectorAll(selector);
-
-        console.log(this.updates);
 
         this.szamlalo = 0;
 
         this.sandwich[this.steps[this.step].name] = [];
         this.sandwich[this.steps[this.step].name + "Price"] = 0;
+        this.sandwich[this.steps[this.step].name + "Pic"] = [];
 
         this.updates.forEach((update) => {
             this.sandwich[this.steps[this.step].name][this.szamlalo] =
@@ -182,10 +282,49 @@ class Wizard {
             this.sandwich[this.steps[this.step].name + "Price"] += parseInt(
                 update.querySelector(".list-price").innerHTML
             );
+            this.sandwich[this.steps[this.step].name + "Pic"][this.szamlalo] +=
+                update.querySelector(".list-img").src.split("/").pop();
 
             this.szamlalo++;
         });
 
+        this.sandwich.price = 0;
+        for (let i = 0; i < this.steps.length; i++) {
+            let caller = this.steps[i].name + "Price";
+            if (this.sandwich[caller])
+                this.sandwich.price += this.sandwich[caller];
+        }
+
+        this.previewUpdate(this.sandwich);
+
         console.log(this.sandwich);
+    }
+
+    /**
+     *
+     * @param {Object} sandwich
+     */
+    previewUpdate(sandwich) {
+        this.previewPic = document.querySelector(".preview-pics");
+        this.previewText = document.querySelector(".preview-text");
+
+        this.previewText.innerHTML = `Előnézet: ${sandwich.price} Ft`;
+
+        this.previewPic.innerHTML = "";
+
+        for (let i in this.steps) {
+            let caller = this.steps[i].name + "Pic";
+            if (sandwich[caller]) {
+                sandwich[caller].forEach((pic) => {
+                    let source = pic.split("undefined").pop();
+                    if (source != "noPic.png") {
+                        let image = document.createElement("img");
+                        image.classList.add("preview-img");
+                        image.src = `./pics/${source}`;
+                        this.previewPic.appendChild(image);
+                    }
+                });
+            }
+        }
     }
 }

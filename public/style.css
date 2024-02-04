@@ -70,8 +70,11 @@ button {
 .main-wrap {
     position: relative;
     margin-top: 70px;
-    display: grid;
-    place-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: calc(100vh - 70px);
 }
 
 .main-btn {
@@ -131,19 +134,34 @@ button {
 
 .window-text {
     font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .window-fill {
     font-size: 1rem;
+    text-align: center;
 }
 
 .preview-ct {
+    display: flex;
+    height: 150px;
 }
 
 .preview-text {
+    font-size: 1.2rem;
 }
 
 .preview-pics {
+    position: relative;
+    height: 150px;
+}
+
+.preview-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
 }
 
 .list-ct {
@@ -181,4 +199,12 @@ button {
 .login-ct {
     display: flex;
     flex-direction: column;
+}
+
+#order-name {
+    text-align: center;
+}
+
+#window-main {
+    text-align: center;
 }

@@ -13,11 +13,11 @@ orderBtn.forEach((btn) => {
     });
 });
 
-closeBtn.addEventListener("click", () => {
-    orderWindow.classList.remove("active");
-    wizard.steps = -1;
-    wizard.list.innerHTML = "";
-});
+if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+        location.reload();
+    });
+}
 
 if (loginBtn) {
     loginBtn.addEventListener("click", () => {
@@ -30,11 +30,6 @@ if (loginBtn) {
                 "Content-type": "application/json",
             },
             body: JSON.stringify({ userName, password }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.logged) location.reload();
-                else alert(data.msg);
-            });
+        }).then(location.reload());
     });
 }
