@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Sonka",
+        "image": "sonka.png",
+        "price": 200
+    },
+    {
+        "name": "Sajt",
+        "image": "sajt.png",
+        "price": 300
+    },
+    {
+        "name": "Saláta",
+        "image": "salata.png",
+        "price": 400
+    }
+]

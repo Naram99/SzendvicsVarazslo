@@ -15,6 +15,11 @@
     --btn-border: #f00;
 }
 
+a {
+    color: transparent;
+    text-decoration: none;
+}
+
 .main-header {
     position: fixed;
     top: 0;
@@ -52,7 +57,8 @@ button {
     gap: 2rem;
 }
 
-.main-header ul li button {
+.main-header ul li button,
+.nav-btn {
     font-size: 1.2rem;
     color: var(--header-color);
     transition: all 0.3s ease;
@@ -121,4 +127,58 @@ button {
 .moves-ct {
     display: flex;
     justify-content: space-between;
+}
+
+.window-text {
+    font-size: 1.5rem;
+}
+
+.window-fill {
+    font-size: 1rem;
+}
+
+.preview-ct {
+}
+
+.preview-text {
+}
+
+.preview-pics {
+}
+
+.list-ct {
+    display: flex;
+    justify-content: space-around;
+}
+
+.list-card,
+.no-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 300px;
+    width: 200px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.list-img {
+    height: 150px;
+    width: 200px;
+}
+
+.list-price {
+}
+
+.list-id {
+    display: none;
+}
+
+.activated {
+    border: 2px solid red;
+}
+
+.login-ct {
+    display: flex;
+    flex-direction: column;
 }

@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Ketchup",
+        "image": "ketchup.png",
+        "price": 200
+    },
+    {
+        "name": "Mustár",
+        "image": "mustar.png",
+        "price": 300
+    },
+    {
+        "name": "Majonéz",
+        "image": "majonez.png",
+        "price": 400
+    }
+]

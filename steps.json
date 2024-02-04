@@ -3,18 +3,21 @@
         "name": "Kenyer",
         "data": "kenyer.json",
         "multiselect": false,
+        "optional": false,
         "text": "Válaszd ki a szendvics alapjául szolgáló kenyeret!"
     },
     {
         "name": "Szosz",
         "data": "szosz.json",
         "multiselect": true,
+        "optional": true,
         "text": "Válaszd ki milyen szósz(oka)t szeretnél a szendvicsbe!"
     },
     {
         "name": "Feltet",
         "data": "feltet.json",
         "multiselect": true,
+        "optional": true,
         "text": "Válaszd ki a feltéteket!"
     }
 ]

@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Zsömle",
+        "image": "zsomle.png",
+        "price": 200
+    },
+    {
+        "id": 2,
+        "name": "Bagett",
+        "image": "bagett.png",
+        "price": 300
+    },
+    {
+        "id": 3,
+        "name": "Teljes kiőrlésű kenyér",
+        "image": "teljeskiorlesu.png",
+        "price": 400
+    }
+]
