@@ -104,12 +104,6 @@ button {
     box-shadow: 0px 0px 15px var(--header-bg);
 }
 
-.active {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .window-btn {
     padding: 10px;
     margin: 5px;
@@ -185,15 +179,15 @@ button {
     width: 200px;
 }
 
-.list-price {
-}
+/*.list-price {
+}*/
 
 .list-id {
     display: none;
 }
 
 .activated {
-    border: 2px solid red;
+    outline: 2px solid red;
 }
 
 .login-ct {
@@ -207,4 +201,74 @@ button {
 
 #window-main {
     text-align: center;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.order-ct {
+    display: flex;
+    border: 1px solid var(--header-bg);
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.7rem;
+    text-align: left;
+}
+
+.order-name {
+    width: 20%;
+}
+
+.order-parts {
+    display: flex;
+    width: 40%;
+    justify-content: space-evenly;
+}
+
+.order-price {
+    width: 20%;
+}
+
+.order-btns {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    gap: 0.5rem;
+}
+
+.order-btn {
+    padding: 0.5rem;
+    background-color: var(--hover-color);
+    color: var(--header-bg);
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bolder;
+    transition: all 0.3s ease;
+}
+
+.order-btn:hover {
+    background-color: var(--btn-border);
+    color: var(--header-color);
+}
+
+.editor {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    gap: 2rem;
+    background-color: var(--header-color);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

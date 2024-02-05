@@ -30,6 +30,11 @@ if (loginBtn) {
                 "Content-type": "application/json",
             },
             body: JSON.stringify({ userName, password }),
-        }).then(location.reload());
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.logged) location.reload();
+                else alert(data.msg);
+            });
     });
 }

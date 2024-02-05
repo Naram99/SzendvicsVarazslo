@@ -17,16 +17,12 @@
                     <nav>
                         <ul>
                             <li>
-                                <button class="nav-btn" id="home-btn">
+                                <a
+                                    href="./index.html"
+                                    class="nav-btn"
+                                    id="home-btn">
                                     Főoldal
-                                </button>
-                            </li>
-                            <li>
-                                <button
-                                    class="nav-btn order-btn"
-                                    id="order-btn">
-                                    Rendelés
-                                </button>
+                                </a>
                             </li>
                             <li>
                                 <a
@@ -42,7 +38,19 @@
             </div>
         </header>
         <main>
-            <h1>ADMIN</h1>
+            <div class="main-wrap">
+                <div class="editor">
+                    <button class="editor-close order-btn">Bezárás</button>
+                    <div id="editor-ct"></div>
+                </div>
+                <h1>ADMIN</h1>
+                <button id="orderList" class="main-btn">
+                    Rendelések betöltése
+                </button>
+                <div id="content"></div>
+                <a href="/logout" class="main-btn">Kijelentkezés</a>
+            </div>
         </main>
+        <script src="admin.js"></script>
     </body>
 </html>

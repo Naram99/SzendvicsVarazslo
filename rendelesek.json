@@ -1,44 +1,115 @@
 [
-    {
-        "price": 1100,
-        "name": "Abbie",
-        "id": 1,
-        "Kenyer": ["Teljes kiőrlésű kenyér"],
-        "KenyerPrice": 400,
-        "KenyerPic": ["undefinedteljeskiorlesu.png"],
-        "Szosz": ["Majonéz"],
-        "SzoszPrice": 400,
-        "SzoszPic": ["undefinedmajonez.png"],
-        "Feltet": ["Sajt"],
-        "FeltetPrice": 300,
-        "FeltetPic": ["undefinedsajt.png"]
-    },
-    {
-        "price": 1500,
-        "name": "Graham",
-        "id": 2,
-        "Kenyer": ["Bagett"],
-        "KenyerPrice": 300,
-        "KenyerPic": ["undefinedbagett.png"],
-        "Szosz": ["Mustár", "Majonéz"],
-        "SzoszPrice": 700,
-        "SzoszPic": ["undefinedmustar.png", "undefinedmajonez.png"],
-        "Feltet": ["Sonka", "Sajt"],
-        "FeltetPrice": 500,
-        "FeltetPic": ["undefinedsonka.png", "undefinedsajt.png"]
-    },
-    {
-        "price": 900,
-        "name": "Regi",
-        "id": 3,
-        "Kenyer": ["Zsömle"],
-        "KenyerPrice": 200,
-        "KenyerPic": ["undefinedzsomle.png"],
-        "Szosz": ["Mustár"],
-        "SzoszPrice": 300,
-        "SzoszPic": ["undefinedmustar.png"],
-        "Feltet": ["Saláta"],
-        "FeltetPrice": 400,
-        "FeltetPic": ["undefinedsalata.png"]
-    }
+	{
+		"price": 1500,
+		"name": "Bella",
+		"id": 2,
+		"Kenyer": [
+			"Bagett"
+		],
+		"KenyerPrice": 300,
+		"KenyerPic": [
+			"undefinedbagett.png"
+		],
+		"Szosz": [
+			"Ketchup",
+			"Mustár",
+			"Majonéz"
+		],
+		"SzoszPrice": 700,
+		"SzoszPic": [
+			"undefinedmustar.png",
+			"undefinedmajonez.png"
+		],
+		"Feltet": [
+			"Sonka"
+		],
+		"FeltetPrice": 500,
+		"FeltetPic": [
+			"undefinedsonka.png",
+			"undefinedsajt.png"
+		]
+	},
+	{
+		"price": 800,
+		"name": "Regi",
+		"id": 3,
+		"Kenyer": [
+			"Zsömle"
+		],
+		"KenyerPrice": 200,
+		"KenyerPic": [
+			"undefinedzsomle.png"
+		],
+		"Szosz": [
+			"Ketchup"
+		],
+		"SzoszPrice": 200,
+		"SzoszPic": [
+			"undefinedmustar.png"
+		],
+		"Feltet": [
+			"Saláta"
+		],
+		"FeltetPrice": 400,
+		"FeltetPic": [
+			"undefinedsalata.png"
+		]
+	},
+	{
+		"price": 1000,
+		"name": "Gabi",
+		"id": 4,
+		"Kenyer": [
+			"Zsömle"
+		],
+		"KenyerPrice": 200,
+		"KenyerPic": [
+			"undefinedzsomle.png"
+		],
+		"Szosz": [
+			"Mustár",
+			"Majonéz"
+		],
+		"SzoszPrice": 300,
+		"SzoszPic": [
+			"undefinedmustar.png"
+		],
+		"Feltet": [
+			"Sonka",
+			"Sajt"
+		],
+		"FeltetPrice": 500,
+		"FeltetPic": [
+			"undefinedsonka.png"
+		]
+	},
+	{
+		"price": 1400,
+		"name": "Peti",
+		"id": 5,
+		"Kenyer": [
+			"Bagett"
+		],
+		"KenyerPrice": 300,
+		"KenyerPic": [
+			"undefinedbagett.png"
+		],
+		"Szosz": [
+			"Ketchup",
+			"Majonéz"
+		],
+		"SzoszPrice": 600,
+		"SzoszPic": [
+			"undefinedketchup.png",
+			"undefinedmajonez.png"
+		],
+		"Feltet": [
+			"Sonka",
+			"Sajt"
+		],
+		"FeltetPrice": 500,
+		"FeltetPic": [
+			"undefinedsalata.png"
+		]
+	}
 ]
